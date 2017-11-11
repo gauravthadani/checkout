@@ -6,8 +6,8 @@ import (
 )
 
 type Biller interface {
-	Scan(p product.Product) error
-	Total() (float64, error)
+	Scan(p product.Product)
+	Total() float64
 }
 
 type StoreCheckout struct {
@@ -22,16 +22,15 @@ func NewStoreCheckout(rules rule.PricingRules) *StoreCheckout {
 	}
 }
 
-func (sc *StoreCheckout) Scan(p product.Product) error {
-	return sc.scan(p)
+func (sc *StoreCheckout) Scan(p product.Product) {
+	sc.scan(p)
 }
 
-func (sc *StoreCheckout) scan(p ...product.Product) error {
+func (sc *StoreCheckout) scan(p ...product.Product) {
 	sc.cart = append(sc.cart, p...)
-	return nil
 }
 
-func (sc *StoreCheckout) Total() (float64, error) {
+func (sc *StoreCheckout) Total() float64 {
 	total := 0.0
 	for _, item := range sc.cart {
 		total += item.Price
@@ -39,5 +38,5 @@ func (sc *StoreCheckout) Total() (float64, error) {
 	for _, rule := range sc.pricingRules {
 		total += rule.Evaluate(sc.cart)
 	}
-	return total, nil
+	return total
 }

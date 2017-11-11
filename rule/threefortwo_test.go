@@ -18,7 +18,7 @@ func Test3for2PricingRule(t *testing.T) {
 
 	discount := rule.Evaluate(cartItems)
 	if discount != -100.0 {
-		t.Errorf("expected %f, got %f to discount 3 items for the price of 2", -100, discount)
+		t.Errorf("expected %f, got %f to discount 3 items for the price of 2", -100.0, discount)
 	}
 }
 
