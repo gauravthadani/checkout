@@ -3,7 +3,6 @@ package checkout
 import (
 	"testing"
 
-	"fmt"
 	"github.com/gauravthadani/checkout/product"
 	"github.com/gauravthadani/checkout/rule"
 )
