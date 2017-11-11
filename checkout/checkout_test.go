@@ -10,8 +10,8 @@ import (
 func TestCheckoutTotalAppleTVs(t *testing.T) {
 	checkout := NewStoreCheckout(rule.PricingRules{})
 
-	checkout.Scan(NewAppleTV())
-	checkout.Scan(NewAppleTV())
+	checkout.Scan(newAppleTV())
+	checkout.Scan(newAppleTV())
 
 	total, _ := checkout.Total()
 	if (total != 219.0) {
@@ -21,17 +21,17 @@ func TestCheckoutTotalAppleTVs(t *testing.T) {
 
 func TestCheckoutTotal_SampleScenario(t *testing.T) {
 
-	appleTVDef := NewAppleTV()
+	appleTVDef := newAppleTV()
 	pricingRules := rule.PricingRules{
 		rule.NewThreeForTwoPricingRule(appleTVDef),
 	}
 
 	checkout := NewStoreCheckout(pricingRules)
 
-	checkout.Scan(NewAppleTV())
-	checkout.Scan(NewAppleTV())
-	checkout.Scan(NewAppleTV())
-	checkout.Scan(NewVGA())
+	checkout.Scan(newAppleTV())
+	checkout.Scan(newAppleTV())
+	checkout.Scan(newAppleTV())
+	checkout.Scan(newVGA())
 
 	total, _ := checkout.Total()
 	if (total != 249.0) {
@@ -41,18 +41,18 @@ func TestCheckoutTotal_SampleScenario(t *testing.T) {
 
 func TestCheckoutTotal_SampleScenario2(t *testing.T) {
 
-	ipadDef := NewIPad()
+	ipadDef := newIPad()
 	checkout := NewStoreCheckout(rule.PricingRules{
 		rule.NewBulkPriceRule(ipadDef, 4, 499.99),
 	})
 
-	checkout.Scan(NewAppleTV())
-	checkout.Scan(NewIPad())
-	checkout.Scan(NewIPad())
-	checkout.Scan(NewAppleTV())
-	checkout.Scan(NewIPad())
-	checkout.Scan(NewIPad())
-	checkout.Scan(NewIPad())
+	checkout.Scan(newAppleTV())
+	checkout.Scan(newIPad())
+	checkout.Scan(newIPad())
+	checkout.Scan(newAppleTV())
+	checkout.Scan(newIPad())
+	checkout.Scan(newIPad())
+	checkout.Scan(newIPad())
 
 	total, _ := checkout.Total()
 	if (total != 2718.95) {
@@ -78,7 +78,7 @@ func TestCheckoutTotal_SampleScenario2(t *testing.T) {
 //}
 
 
-func NewVGA() product.Product {
+func newVGA() product.Product {
 	return product.Product{
 		Name:"VGA adapter",
 		SKU:"vga",
@@ -86,7 +86,7 @@ func NewVGA() product.Product {
 	}
 }
 
-func NewIPad() product.Product {
+func newIPad() product.Product {
 	return product.Product{
 		Name:"Super iPad",
 		SKU:"ipd",
@@ -94,7 +94,7 @@ func NewIPad() product.Product {
 	}
 }
 
-func NewAppleTV() product.Product {
+func newAppleTV() product.Product {
 	return product.Product{
 		Name:"Apple TV",
 		SKU:"atv",
@@ -102,7 +102,7 @@ func NewAppleTV() product.Product {
 	}
 }
 
-func NewMacBookPro() product.Product {
+func newMacBookPro() product.Product {
 	return product.Product{
 		Name:"MacBook Pro",
 		SKU:"mbp",
