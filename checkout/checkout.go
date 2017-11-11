@@ -5,11 +5,6 @@ import (
 	"github.com/gauravthadani/checkout/rule"
 )
 
-type Biller interface {
-	Scan(p product.Product)
-	Total() float64
-}
-
 type StoreCheckout struct {
 	cart         []product.Product
 	pricingRules rule.PricingRules
