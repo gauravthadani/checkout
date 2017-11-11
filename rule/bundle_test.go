@@ -1,8 +1,9 @@
 package rule
 
 import (
-	"github.com/gauravthadani/checkout/product"
 	"testing"
+
+	"github.com/gauravthadani/checkout/product"
 )
 
 func TestBundleRule(t *testing.T) {

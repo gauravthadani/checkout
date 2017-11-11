@@ -1,8 +1,9 @@
 package rule
 
 import (
-	"github.com/gauravthadani/checkout/product"
 	"math"
+
+	"github.com/gauravthadani/checkout/product"
 )
 
 type bundleRule struct {
