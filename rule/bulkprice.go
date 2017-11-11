@@ -25,7 +25,7 @@ func (rule *bulkPriceRule) Evaluate(cart []product.Product) float64 {
 		}
 	}
 
-	if count >= rule.minQty {
+	if count > rule.minQty {
 		discountPerItem := rule.applicableProduct.Price - rule.pricePerItem
 		return -(discountPerItem * float64(count))
 	}
