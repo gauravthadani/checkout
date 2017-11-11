@@ -23,7 +23,7 @@ func TestCheckoutTotalSampleScenario(t *testing.T){
 
 	checkout.Scan(NewAppleTV())
 	checkout.Scan(NewAppleTV())
-	checkout.Scan(NewAppleTV())
+	//checkout.Scan(NewAppleTV())
 
 	checkout.Scan(NewVGA())
 
