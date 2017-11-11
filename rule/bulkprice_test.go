@@ -23,8 +23,6 @@ func TestFixedPrice(t *testing.T) {
 	}
 }
 
-
-
 func TestFixedPrice_MinimumQuantity(t *testing.T) {
 	productdefinition := NewSampleProduct()
 	rule := NewBulkPriceRule(productdefinition, 3, 40.0)

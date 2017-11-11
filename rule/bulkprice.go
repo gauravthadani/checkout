@@ -11,9 +11,9 @@ type bulkPriceRule struct {
 func NewBulkPriceRule(product product.Product, bulkQty int, price float64) *bulkPriceRule {
 
 	return &bulkPriceRule{
-		applicableProduct:product,
-		minQty:   bulkQty,
-		pricePerItem:  price,
+		applicableProduct: product,
+		minQty:            bulkQty,
+		pricePerItem:      price,
 	}
 }
 

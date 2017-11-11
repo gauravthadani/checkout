@@ -17,8 +17,8 @@ type StoreCheckout struct {
 
 func NewStoreCheckout(rules rule.PricingRules) *StoreCheckout {
 	return &StoreCheckout{
-		cart:[]product.Product{},
-		pricingRules:rules,
+		cart:         []product.Product{},
+		pricingRules: rules,
 	}
 }
 

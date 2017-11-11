@@ -14,7 +14,7 @@ func TestCheckoutTotalAppleTVs(t *testing.T) {
 	checkout.Scan(newAppleTV())
 
 	total, _ := checkout.Total()
-	if (total != 219.0) {
+	if total != 219.0 {
 		t.Errorf("Expected $%f, got $%f for 2 Apple TV's", 219.0, total)
 	}
 }
@@ -34,7 +34,7 @@ func TestCheckoutTotal_SampleScenario(t *testing.T) {
 	checkout.Scan(newVGA())
 
 	total, _ := checkout.Total()
-	if (total != 249.0) {
+	if total != 249.0 {
 		t.Errorf("Expected $%f, got $%f for 3 Apple TV's and a VGA adapter", 249.0, total)
 	}
 }
@@ -55,10 +55,11 @@ func TestCheckoutTotal_SampleScenario2(t *testing.T) {
 	checkout.Scan(newIPad())
 
 	total, _ := checkout.Total()
-	if (total != 2718.95) {
+	if total != 2718.95 {
 		t.Errorf("Expected $%f, got $%f for 5 Apple TV's and 2 IPads", 2718.95, total)
 	}
 }
+
 //
 //func TestCheckoutTotal_SampleScenario3(t *testing.T){
 //
@@ -77,38 +78,34 @@ func TestCheckoutTotal_SampleScenario2(t *testing.T) {
 //	}
 //}
 
-
 func newVGA() product.Product {
 	return product.Product{
-		Name:"VGA adapter",
-		SKU:"vga",
-		Price:30.0,
+		Name:  "VGA adapter",
+		SKU:   "vga",
+		Price: 30.0,
 	}
 }
 
 func newIPad() product.Product {
 	return product.Product{
-		Name:"Super iPad",
-		SKU:"ipd",
-		Price:549.99,
+		Name:  "Super iPad",
+		SKU:   "ipd",
+		Price: 549.99,
 	}
 }
 
 func newAppleTV() product.Product {
 	return product.Product{
-		Name:"Apple TV",
-		SKU:"atv",
-		Price:109.50,
+		Name:  "Apple TV",
+		SKU:   "atv",
+		Price: 109.50,
 	}
 }
 
 func newMacBookPro() product.Product {
 	return product.Product{
-		Name:"MacBook Pro",
-		SKU:"mbp",
-		Price:1399.99,
+		Name:  "MacBook Pro",
+		SKU:   "mbp",
+		Price: 1399.99,
 	}
 }
-
-
-

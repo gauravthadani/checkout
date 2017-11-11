@@ -1,9 +1,8 @@
 package product
 
-
 type Product struct {
-	SKU string
-	Name string
+	SKU   string
+	Name  string
 	Price float64
 }
 

@@ -18,7 +18,7 @@ func Test3for2PricingRule(t *testing.T) {
 	}
 
 	discount := rule.Evaluate(cartItems)
-	if (discount != -100.0) {
+	if discount != -100.0 {
 		t.Errorf("expected %f, got %f to discount 3 items for the price of 2", -100, discount)
 	}
 }
@@ -30,15 +30,15 @@ func Test3for2PricingRule_DiscountInsufficientCart(t *testing.T) {
 	cartItems := []product.Product{NewSampleProduct()}
 
 	discount := rule.Evaluate(cartItems)
-	if (discount != 0.00) {
+	if discount != 0.00 {
 		t.Errorf("expected %f, got %f as no discount for single item in cart", 0.0, discount)
 	}
 }
 
 func NewSampleProduct() product.Product {
 	return product.Product{
-		Name:"MyItem",
-		SKU:"abc",
-		Price:100,
+		Name:  "MyItem",
+		SKU:   "abc",
+		Price: 100,
 	}
 }
