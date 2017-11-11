@@ -7,8 +7,8 @@ import (
 )
 
 func TestFixedPrice(t *testing.T) {
-	productType := NewSampleProduct()
-	rule := NewFixedPriceRule(productType.SKU, 3, 50.0)
+	productdefinition := NewSampleProduct()
+	rule := NewBulkPriceRule(productdefinition, 3, 40.0)
 
 	cart := []product.Product{
 		NewSampleProduct(),
@@ -17,7 +17,7 @@ func TestFixedPrice(t *testing.T) {
 	}
 
 	discount := rule.Evaluate(cart)
-	if discount != -150.0 {
-		t.Errorf("expected %f, got %f as discount for bulk quantity", 150.0, discount)
+	if discount != -180.0 {
+		t.Errorf("expected %f, got %f as discount for bulk quantity", -180.0, discount)
 	}
 }

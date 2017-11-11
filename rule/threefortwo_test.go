@@ -7,7 +7,9 @@ import (
 )
 
 func Test3for2PricingRule(t *testing.T) {
-	rule := NewThreeForTwoPricingRule("abc", 100)
+
+	productDefinition := NewSampleProduct()
+	rule := NewThreeForTwoPricingRule(productDefinition)
 
 	cartItems := []product.Product{
 		NewSampleProduct(),
@@ -22,7 +24,8 @@ func Test3for2PricingRule(t *testing.T) {
 }
 
 func Test3for2PricingRule_DiscountInsufficientCart(t *testing.T) {
-	rule := NewThreeForTwoPricingRule("abc", 100)
+	productDefinition := NewSampleProduct()
+	rule := NewThreeForTwoPricingRule(productDefinition)
 
 	cartItems := []product.Product{NewSampleProduct()}
 

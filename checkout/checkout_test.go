@@ -21,9 +21,9 @@ func TestCheckoutTotalAppleTVs(t *testing.T) {
 
 func TestCheckoutTotal_SampleScenario(t *testing.T) {
 
-	appleTV := NewAppleTV()
+	appleTVDef := NewAppleTV()
 	pricingRules := rule.PricingRules{
-		rule.NewThreeForTwoPricingRule(appleTV.SKU, appleTV.Price),
+		rule.NewThreeForTwoPricingRule(appleTVDef),
 	}
 
 	checkout := NewStoreCheckout(pricingRules)
