@@ -23,6 +23,10 @@ func NewStoreCheckout(rules rule.PricingRules) *StoreCheckout {
 }
 
 func (sc *StoreCheckout) Scan(p product.Product) error {
+	return sc.scan(p)
+}
+
+func (sc *StoreCheckout) scan(p ...product.Product) error {
 	sc.cart = append(sc.cart, p)
 	return nil
 }

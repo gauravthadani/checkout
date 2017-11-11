@@ -9,9 +9,7 @@ import (
 
 func TestCheckoutTotalAppleTVs(t *testing.T) {
 	checkout := NewStoreCheckout(rule.PricingRules{})
-
-	checkout.Scan(newAppleTV())
-	checkout.Scan(newAppleTV())
+	checkout.scan(newAppleTV(), newAppleTV())
 
 	total, _ := checkout.Total()
 	if total != 219.0 {
@@ -20,7 +18,6 @@ func TestCheckoutTotalAppleTVs(t *testing.T) {
 }
 
 func TestCheckoutTotal_SampleScenario(t *testing.T) {
-
 	appleTVDef := newAppleTV()
 	pricingRules := rule.PricingRules{
 		rule.NewThreeForTwoPricingRule(appleTVDef),
@@ -28,10 +25,8 @@ func TestCheckoutTotal_SampleScenario(t *testing.T) {
 
 	checkout := NewStoreCheckout(pricingRules)
 
-	checkout.Scan(newAppleTV())
-	checkout.Scan(newAppleTV())
-	checkout.Scan(newAppleTV())
-	checkout.Scan(newVGA())
+	checkout.scan(newAppleTV(), newAppleTV(), newAppleTV())
+	checkout.scan(newVGA())
 
 	total, _ := checkout.Total()
 	if total != 249.0 {
@@ -40,19 +35,16 @@ func TestCheckoutTotal_SampleScenario(t *testing.T) {
 }
 
 func TestCheckoutTotal_SampleScenario2(t *testing.T) {
-
 	ipadDef := newIPad()
 	checkout := NewStoreCheckout(rule.PricingRules{
 		rule.NewBulkPriceRule(ipadDef, 4, 499.99),
 	})
 
-	checkout.Scan(newAppleTV())
-	checkout.Scan(newIPad())
-	checkout.Scan(newIPad())
-	checkout.Scan(newAppleTV())
-	checkout.Scan(newIPad())
-	checkout.Scan(newIPad())
-	checkout.Scan(newIPad())
+	checkout.scan(
+		newAppleTV(),
+		newIPad(), newIPad(),
+		newAppleTV(),
+		newIPad(), newIPad(), newIPad())
 
 	total, _ := checkout.Total()
 	if total != 2718.95 {
