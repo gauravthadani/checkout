@@ -11,7 +11,7 @@ func TestCheckoutTotalAppleTVs(t *testing.T) {
 	checkout := NewStoreCheckout(rule.PricingRules{})
 	checkout.scan(newAppleTV(), newAppleTV())
 
-	total, _ := checkout.Total()
+	total := checkout.Total()
 	if total != 219.0 {
 		t.Errorf("Expected $%f, got $%f for 2 Apple TV's", 219.0, total)
 	}
@@ -28,7 +28,7 @@ func TestCheckoutTotal_SampleScenario(t *testing.T) {
 	checkout.scan(newAppleTV(), newAppleTV(), newAppleTV())
 	checkout.scan(newVGA())
 
-	total, _ := checkout.Total()
+	total := checkout.Total()
 	if total != 249.0 {
 		t.Errorf("Expected $%f, got $%f for 3 Apple TV's and a VGA adapter", 249.0, total)
 	}
@@ -46,7 +46,7 @@ func TestCheckoutTotal_SampleScenario2(t *testing.T) {
 		newAppleTV(),
 		newIPad(), newIPad(), newIPad())
 
-	total, _ := checkout.Total()
+	total := checkout.Total()
 	if total != 2718.95 {
 		t.Errorf("Expected $%f, got $%f for 5 Apple TV's and 2 IPads", 2718.95, total)
 	}
@@ -65,7 +65,7 @@ func TestCheckoutTotal_SampleScenario3(t *testing.T) {
 	checkout.Scan(newVGA())
 	checkout.Scan(newIPad())
 
-	total, _ := checkout.Total()
+	total := checkout.Total()
 	if total != 1949.98 {
 		t.Errorf("Expected $%f, got $%f for 1 MacBookPro, 1 VGA and 1 Ipad", 1949.98, total)
 	}
@@ -76,7 +76,7 @@ func TestInjectedRuleShouldNotMutateCart(t *testing.T) {
 		newMutatingRule(),
 	})
 	checkout.Scan(newMacBookPro())
-	_, _ = checkout.Total()
+	_ = checkout.Total()
 
 	if len(checkout.cart) != 1 {
 		t.Errorf("Expected the cart to have 1 item, instead has %d items", len(checkout.cart))

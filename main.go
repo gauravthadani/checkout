@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	
+
 	"github.com/gauravthadani/checkout/checkout"
 	"github.com/gauravthadani/checkout/factory"
 )
