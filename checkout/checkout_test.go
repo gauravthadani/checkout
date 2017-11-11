@@ -59,6 +59,24 @@ func TestCheckoutTotal_SampleScenario2(t *testing.T) {
 		t.Errorf("Expected $%f, got $%f for 5 Apple TV's and 2 IPads", 2718.95, total)
 	}
 }
+//
+//func TestCheckoutTotal_SampleScenario3(t *testing.T){
+//
+//	mbpDef := NewMacBookPro()
+//	vgaDef:= NewVGA()
+//
+//	checkout := NewStoreCheckout(nil)
+//
+//	checkout.Scan(NewMacBookPro())
+//	checkout.Scan(NewVGA())
+//	checkout.Scan(NewIPad())
+//
+//	total, _ := checkout.Total()
+//	if (total != 1949.98) {
+//		t.Errorf("Expected $%f, got $%f for 1 MacBookPro, 1 VGA and 1 Ipad", 1949.98, total)
+//	}
+//}
+
 
 func NewVGA() product.Product {
 	return product.Product{
@@ -83,5 +101,14 @@ func NewAppleTV() product.Product {
 		Price:109.50,
 	}
 }
+
+func NewMacBookPro() product.Product {
+	return product.Product{
+		Name:"MacBook Pro",
+		SKU:"mbp",
+		Price:1399.99,
+	}
+}
+
 
 
