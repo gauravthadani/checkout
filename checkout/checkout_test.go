@@ -19,12 +19,13 @@ func TestCheckoutSimpleTotal(t *testing.T) {
 		Price:109.50,
 	}
 
-	checkout := NewCheckout()
+	checkout := NewStoreCheckout()
 	checkout.Scan(atv1)
 	checkout.Scan(atv2)
 
-	if (checkout.Total() != 219.0){
-		t.Errorf("Expected %f, got %f",219.0, checkout.Total())
+	total, _ := checkout.Total()
+	if (total != 219.0) {
+		t.Errorf("Expected %f, got %f", 219.0, total)
 	}
 
 }
