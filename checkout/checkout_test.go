@@ -52,23 +52,25 @@ func TestCheckoutTotal_SampleScenario2(t *testing.T) {
 	}
 }
 
-//
-//func TestCheckoutTotal_SampleScenario3(t *testing.T){
-//
-//	mbpDef := NewMacBookPro()
-//	vgaDef:= NewVGA()
-//
-//	checkout := NewStoreCheckout(nil)
-//
-//	checkout.Scan(NewMacBookPro())
-//	checkout.Scan(NewVGA())
-//	checkout.Scan(NewIPad())
-//
-//	total, _ := checkout.Total()
-//	if (total != 1949.98) {
-//		t.Errorf("Expected $%f, got $%f for 1 MacBookPro, 1 VGA and 1 Ipad", 1949.98, total)
-//	}
-//}
+
+func TestCheckoutTotal_SampleScenario3(t *testing.T){
+
+	mbpDef := newMacBookPro()
+	vgaDef:= newVGA()
+
+	checkout := NewStoreCheckout(rule.PricingRules{
+		rule.NewBundleRule(mbpDef,vgaDef),
+	})
+
+	checkout.Scan(newMacBookPro())
+	checkout.Scan(newVGA())
+	checkout.Scan(newIPad())
+
+	total, _ := checkout.Total()
+	if (total != 1949.98) {
+		t.Errorf("Expected $%f, got $%f for 1 MacBookPro, 1 VGA and 1 Ipad", 1949.98, total)
+	}
+}
 
 func newVGA() product.Product {
 	return product.Product{
