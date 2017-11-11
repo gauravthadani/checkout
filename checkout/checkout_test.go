@@ -39,22 +39,26 @@ func TestCheckoutTotal_SampleScenario(t *testing.T) {
 	}
 }
 
-//func TestCheckoutTotal_SampleScenario2(t *testing.T){
-//	checkout := NewStoreCheckout(rule.PricingRules{})
-//
-//	checkout.Scan(NewAppleTV())
-//	checkout.Scan(NewIPad())
-//	checkout.Scan(NewIPad())
-//	checkout.Scan(NewAppleTV())
-//	checkout.Scan(NewIPad())
-//	checkout.Scan(NewIPad())
-//	checkout.Scan(NewIPad())
-//
-//	total, _ := checkout.Total()
-//	if (total != 2718.95) {
-//		t.Errorf("Expected $%f, got $%f for 5 Apple TV's and 2 IPads", 2718.95, total)
-//	}
-//}
+func TestCheckoutTotal_SampleScenario2(t *testing.T) {
+
+	ipadDef := NewIPad()
+	checkout := NewStoreCheckout(rule.PricingRules{
+		rule.NewBulkPriceRule(ipadDef, 4, 499.99),
+	})
+
+	checkout.Scan(NewAppleTV())
+	checkout.Scan(NewIPad())
+	checkout.Scan(NewIPad())
+	checkout.Scan(NewAppleTV())
+	checkout.Scan(NewIPad())
+	checkout.Scan(NewIPad())
+	checkout.Scan(NewIPad())
+
+	total, _ := checkout.Total()
+	if (total != 2718.95) {
+		t.Errorf("Expected $%f, got $%f for 5 Apple TV's and 2 IPads", 2718.95, total)
+	}
+}
 
 func NewVGA() product.Product {
 	return product.Product{
