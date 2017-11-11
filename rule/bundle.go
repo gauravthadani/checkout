@@ -1,6 +1,9 @@
 package rule
 
-import "github.com/gauravthadani/checkout/product"
+import (
+	"github.com/gauravthadani/checkout/product"
+	"math"
+)
 
 type bundleRule struct {
 	applicableProduct product.Product
@@ -22,14 +25,14 @@ func (rule *bundleRule) Evaluate(cart []product.Product) float64 {
 		}
 	}
 
-	bundledItemsCount:=0
+	bundledItemsCount := 0
 	for _, item := range cart {
 		if item.SKU == rule.bundleProduct.SKU {
 			bundledItemsCount++
 		}
 	}
 
-
-	return - (float64(productCount-bundledItemsCount) * rule.bundleProduct.Price)
+	q := math.Min(float64(productCount), float64(bundledItemsCount))
+	return - (q * rule.bundleProduct.Price)
 
 }
