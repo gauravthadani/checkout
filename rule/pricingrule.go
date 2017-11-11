@@ -1,15 +1,9 @@
 package rule
 
-type Rulable interface{
-	Evaluate()error
+import "github.com/gauravthadani/checkout/product"
+
+type Rulable interface {
+	Evaluate(items []product.Product) (float64 ,error)
 }
 
-type PricingRule struct{
-
-}
-
-
-
-
-
-type PricingRules []PricingRule
+type PricingRules []Rulable

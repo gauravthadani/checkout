@@ -21,23 +21,23 @@ func TestCheckoutTotalAppleTVs(t *testing.T) {
 
 func TestCheckoutTotalSampleScenario(t *testing.T){
 
-	pricingRules := rule.PricingRules{
-		rule.PricingRule{
+	//pricingRules := rule.PricingRules{
+	//	rule.PricingRule{
+	//
+	//	},
+	//}
 
-		},
-	}
-
-	checkout := NewStoreCheckout(pricingRules)
+	checkout := NewStoreCheckout(rule.PricingRules{})
 
 	checkout.Scan(NewAppleTV())
 	checkout.Scan(NewAppleTV())
-	checkout.Scan(NewAppleTV())
+	//checkout.Scan(NewAppleTV())
 
 	checkout.Scan(NewVGA())
 
 	total, _:=checkout.Total()
 	if(total != 249.0) {
-		t.Errorf("Expected $%f , got $%f for 3 Apple TV's and a VGA adapter", 249.0, total)
+		t.Errorf("Expected $%f, got $%f for 3 Apple TV's and a VGA adapter", 249.0, total)
 	}
 }
 
