@@ -4,10 +4,11 @@ import (
 	"testing"
 
 	"github.com/gauravthadani/checkout/product"
+	"github.com/gauravthadani/checkout/rule"
 )
 
 func TestCheckoutTotalAppleTVs(t *testing.T) {
-	checkout := NewStoreCheckout()
+	checkout := NewStoreCheckout(rule.PricingRules{})
 
 	checkout.Scan(NewAppleTV())
 	checkout.Scan(NewAppleTV())
@@ -19,11 +20,18 @@ func TestCheckoutTotalAppleTVs(t *testing.T) {
 }
 
 func TestCheckoutTotalSampleScenario(t *testing.T){
-	checkout := NewStoreCheckout()
+
+	pricingRules := rule.PricingRules{
+		rule.PricingRule{
+
+		},
+	}
+
+	checkout := NewStoreCheckout(pricingRules)
 
 	checkout.Scan(NewAppleTV())
 	checkout.Scan(NewAppleTV())
-	//checkout.Scan(NewAppleTV())
+	checkout.Scan(NewAppleTV())
 
 	checkout.Scan(NewVGA())
 

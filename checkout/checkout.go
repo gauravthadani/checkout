@@ -1,6 +1,9 @@
 package checkout
 
-import "github.com/gauravthadani/checkout/product"
+import (
+	"github.com/gauravthadani/checkout/product"
+	"github.com/gauravthadani/checkout/rule"
+)
 
 type Biller interface {
 	Scan(p product.Product) error
@@ -11,12 +14,10 @@ type StoreCheckout struct {
 	cart []product.Product
 }
 
-func NewStoreCheckout() *StoreCheckout {
-	cart := []product.Product{}
+func NewStoreCheckout(rules rule.PricingRules) *StoreCheckout {
 	return &StoreCheckout{
-		cart:cart,
+		cart:[]product.Product{},
 	}
-
 }
 
 func (sc *StoreCheckout) Scan(p product.Product) error {
