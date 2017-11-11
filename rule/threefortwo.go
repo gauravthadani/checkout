@@ -3,28 +3,30 @@ package rule
 import "github.com/gauravthadani/checkout/product"
 
 type ThreeForTwoPricingRule struct {
-	sku string
+	applicationSKU string
+	price          float64
 }
 
-func NewThreeForTwoPricingRule(sku string) *ThreeForTwoPricingRule {
+func NewThreeForTwoPricingRule(sku string, price float64) *ThreeForTwoPricingRule {
 	return &ThreeForTwoPricingRule{
-		sku:sku,
+		applicationSKU:sku,
+		price:price,
 	}
 }
 
-func (rule *ThreeForTwoPricingRule) Evaluate(cart []product.Product) (float64, error) {
+func (rule *ThreeForTwoPricingRule) Evaluate(cart []product.Product) float64 {
 	count := 0
 
 	for _, item := range cart {
-		if (item.SKU == rule.sku) {
+		if (item.SKU == rule.applicationSKU) {
 			count++
 		}
 	}
 
 	if (count >= 3) {
-		return -100, nil
+		return -rule.price
 	}
-	return 0, nil
+	return 0
 }
 
 
