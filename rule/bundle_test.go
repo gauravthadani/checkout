@@ -1,0 +1,30 @@
+package rule
+
+import (
+	"testing"
+	"github.com/gauravthadani/checkout/product"
+)
+
+func TestBundleRule(t *testing.T) {
+	productDef := NewSampleProduct()
+	bundleDef := NewBundleProduct()
+	rule := NewBundleRule(productDef, bundleDef)
+
+	cart := []product.Product{
+		NewSampleProduct(),
+		NewBundleProduct(),
+	}
+
+	discount := rule.Evaluate(cart)
+	if discount != -5.0 {
+		t.Errorf("expected %f, got %f as discount for the bundle product", -5.0, discount)
+	}
+}
+func NewBundleProduct() product.Product {
+	return product.Product{
+		SKU:"cde",
+		Name:"sample cable",
+		Price:5.0,
+	}
+}
+
