@@ -3,6 +3,7 @@ package checkout
 import (
 	"testing"
 
+	"fmt"
 	"github.com/gauravthadani/checkout/product"
 	"github.com/gauravthadani/checkout/rule"
 )
@@ -52,14 +53,13 @@ func TestCheckoutTotal_SampleScenario2(t *testing.T) {
 	}
 }
 
-
-func TestCheckoutTotal_SampleScenario3(t *testing.T){
+func TestCheckoutTotal_SampleScenario3(t *testing.T) {
 
 	mbpDef := newMacBookPro()
-	vgaDef:= newVGA()
+	vgaDef := newVGA()
 
 	checkout := NewStoreCheckout(rule.PricingRules{
-		rule.NewBundleRule(mbpDef,vgaDef),
+		rule.NewBundleRule(mbpDef, vgaDef),
 	})
 
 	checkout.Scan(newMacBookPro())
@@ -67,9 +67,37 @@ func TestCheckoutTotal_SampleScenario3(t *testing.T){
 	checkout.Scan(newIPad())
 
 	total, _ := checkout.Total()
-	if (total != 1949.98) {
+	if total != 1949.98 {
 		t.Errorf("Expected $%f, got $%f for 1 MacBookPro, 1 VGA and 1 Ipad", 1949.98, total)
 	}
+}
+
+func TestInjectedRuleShouldNotMutateCart(t *testing.T) {
+	checkout := NewStoreCheckout(rule.PricingRules{
+		newMutatingRule(),
+	})
+	checkout.Scan(newMacBookPro())
+	_, _ = checkout.Total()
+
+	if len(checkout.cart) != 1 {
+		t.Errorf("Expected the cart to have 1 item, instead has %d items", len(checkout.cart))
+	}
+
+}
+
+type MutatingRule struct {
+}
+
+func (rule *MutatingRule) Evaluate(cart []product.Product) float64 {
+	cart = append(cart, product.Product{
+		Name:  "badProduct",
+		Price: -10000,
+	})
+	return 0
+}
+
+func newMutatingRule() rule.Rulable {
+	return &MutatingRule{}
 }
 
 func newVGA() product.Product {

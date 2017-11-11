@@ -12,8 +12,8 @@ type bundleRule struct {
 
 func NewBundleRule(product product.Product, bundleProduct product.Product) *bundleRule {
 	return &bundleRule{
-		applicableProduct:product,
-		bundleProduct:bundleProduct,
+		applicableProduct: product,
+		bundleProduct:     bundleProduct,
 	}
 }
 
@@ -33,6 +33,6 @@ func (rule *bundleRule) Evaluate(cart []product.Product) float64 {
 	}
 
 	q := math.Min(float64(productCount), float64(bundledItemsCount))
-	return - (q * rule.bundleProduct.Price)
+	return -(q * rule.bundleProduct.Price)
 
 }

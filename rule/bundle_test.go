@@ -1,8 +1,8 @@
 package rule
 
 import (
-	"testing"
 	"github.com/gauravthadani/checkout/product"
+	"testing"
 )
 
 func TestBundleRule(t *testing.T) {
@@ -40,9 +40,8 @@ func TestBundleRule_MoreProductsThanBundled(t *testing.T) {
 
 func NewBundleProduct() product.Product {
 	return product.Product{
-		SKU:"cde",
-		Name:"sample cable",
-		Price:5.0,
+		SKU:   "cde",
+		Name:  "sample cable",
+		Price: 5.0,
 	}
 }
-

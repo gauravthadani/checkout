@@ -27,7 +27,7 @@ func (sc *StoreCheckout) Scan(p product.Product) error {
 }
 
 func (sc *StoreCheckout) scan(p ...product.Product) error {
-	sc.cart = append(sc.cart, p ...)
+	sc.cart = append(sc.cart, p...)
 	return nil
 }
 
