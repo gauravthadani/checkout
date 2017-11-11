@@ -16,7 +16,6 @@ func NewThreeForTwoPricingRule(sku string, price float64) *ThreeForTwoPricingRul
 
 func (rule *ThreeForTwoPricingRule) Evaluate(cart []product.Product) float64 {
 	count := 0
-
 	for _, item := range cart {
 		if (item.SKU == rule.applicationSKU) {
 			count++

@@ -19,29 +19,28 @@ func TestCheckoutTotalAppleTVs(t *testing.T) {
 	}
 }
 
-func TestCheckoutTotalSampleScenario(t *testing.T){
+func TestCheckoutTotalSampleScenario(t *testing.T) {
 
-	//pricingRules := rule.PricingRules{
-	//	rule.PricingRule{
-	//
-	//	},
-	//}
+	appleTV := NewAppleTV()
+	pricingRules := rule.PricingRules{
+		rule.NewThreeForTwoPricingRule(appleTV.SKU, appleTV.Price),
+	}
 
-	checkout := NewStoreCheckout(rule.PricingRules{})
+	checkout := NewStoreCheckout(pricingRules)
 
 	checkout.Scan(NewAppleTV())
 	checkout.Scan(NewAppleTV())
-	//checkout.Scan(NewAppleTV())
+	checkout.Scan(NewAppleTV())
 
 	checkout.Scan(NewVGA())
 
-	total, _:=checkout.Total()
-	if(total != 249.0) {
+	total, _ := checkout.Total()
+	if (total != 249.0) {
 		t.Errorf("Expected $%f, got $%f for 3 Apple TV's and a VGA adapter", 249.0, total)
 	}
 }
 
-func NewVGA() product.Product{
+func NewVGA() product.Product {
 	return product.Product{
 		Name:"VGA adapter",
 		SKU:"vga",

@@ -11,12 +11,14 @@ type Biller interface {
 }
 
 type StoreCheckout struct {
-	cart []product.Product
+	cart         []product.Product
+	pricingRules rule.PricingRules
 }
 
 func NewStoreCheckout(rules rule.PricingRules) *StoreCheckout {
 	return &StoreCheckout{
 		cart:[]product.Product{},
+		pricingRules:rules,
 	}
 }
 
@@ -29,6 +31,9 @@ func (sc *StoreCheckout) Total() (float64, error) {
 	total := 0.0
 	for _, item := range sc.cart {
 		total += item.Price
+	}
+	for _, rule := range sc.pricingRules {
+		total += rule.Evaluate(sc.cart)
 	}
 	return total, nil
 }
