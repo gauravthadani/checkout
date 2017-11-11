@@ -7,8 +7,8 @@ import (
 )
 
 func TestFixedPrice(t *testing.T) {
-	productdefinition := NewSampleProduct()
-	rule := NewBulkPriceRule(productdefinition, 3, 40.0)
+	productDef := NewSampleProduct()
+	rule := NewBulkPriceRule(productDef, 3, 40.0)
 
 	cart := []product.Product{
 		NewSampleProduct(),
@@ -24,8 +24,8 @@ func TestFixedPrice(t *testing.T) {
 }
 
 func TestFixedPrice_MinimumQuantity(t *testing.T) {
-	productdefinition := NewSampleProduct()
-	rule := NewBulkPriceRule(productdefinition, 3, 40.0)
+	productDef := NewSampleProduct()
+	rule := NewBulkPriceRule(productDef, 3, 40.0)
 
 	cart := []product.Product{
 		NewSampleProduct(),
