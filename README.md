@@ -12,7 +12,7 @@ https://golang.org/doc/install
 
 ### Running Tests 
 
-clone at ~src/github.com/gauravthadani/checkout
+clone at ~/src/github.com/gauravthadani/checkout
 
 ```sh
 cd checkout
@@ -21,7 +21,7 @@ go test ./... -v
 
 ### Running 
 
-clone at ~src/github.com/gauravthadani/checkout
+clone at ~/src/github.com/gauravthadani/checkout
 
 ```sh
 cd checkout
